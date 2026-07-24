@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Blackjack Login</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+html,
+body{
+
+height:100%;
+
+}
+
+body{
+
+display:flex;
+
+flex-direction:column;
+
+min-height:100vh;
+
+overflow-x:hidden;
+
+overflow-y:auto;
+
+}
+/******************************************
+BACKGROUND
+******************************************/
+
+.bg{
+
+position:fixed;
+inset:0;
+overflow:hidden;
+z-index:-10;
+background:#fafafa;
+
+}
+
+/* Blue */
+
+.bg::before{
+
+content:"";
+position:absolute;
+
+width:900px;
+height:900px;
+
+right:-300px;
+top:-180px;
+
+border-radius:50%;
+
+background:radial-gradient(circle,
+rgba(108,130,255,.55) 0%,
+rgba(108,130,255,.18) 45%,
+transparent 72%);
+
+filter:blur(70px);
+
+}
+
+/* Red */
+
+.bg::after{
+
+content:"";
+position:absolute;
+
+width:850px;
+height:850px;
+
+right:-180px;
+bottom:-300px;
+
+border-radius:50%;
+
+background:radial-gradient(circle,
+rgba(255,0,25,.95) 0%,
+rgba(255,70,70,.45) 38%,
+transparent 70%);
+
+filter:blur(90px);
+
+}
+
+.blur1{
+
+position:absolute;
+
+width:900px;
+height:900px;
+
+left:250px;
+bottom:-350px;
+
+background:radial-gradient(circle,
+rgba(180,220,255,.70),
+transparent 72%);
+
+filter:blur(80px);
+
+border-radius:50%;
+
+}
+
+.blur2{
+
+position:absolute;
+
+width:800px;
+height:800px;
+
+right:180px;
+top:150px;
+
+background:radial-gradient(circle,
+rgba(175,120,255,.45),
+transparent 70%);
+
+filter:blur(90px);
+
+border-radius:50%;
+
+}
+
+/******************************************
+HEADER
+******************************************/
+
+header{
+
+height:75px;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:0 45px;
+
+background:rgba(255,255,255,.45);
+
+backdrop-filter:blur(14px);
+
+border-bottom:1px solid rgba(255,255,255,.6);
+
+}
+
+.brand{
+
+display:flex;
+
+align-items:center;
+
+text-decoration:none;
+
+}
+
+.logo{
+
+width:48px;
+height:48px;
+
+border-radius:14px;
+
+background:linear-gradient(135deg,#365CFF,#4A2BFF);
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+color:#fff;
+
+font-size:20px;
+
+font-weight:700;
+
+margin-right:14px;
+
+box-shadow:0 12px 30px rgba(60,70,255,.30);
+
+}
+
+.brand h4{
+
+margin:0;
+
+font-weight:700;
+
+font-size:23px;
+
+color:#0E1755;
+
+}
+
+.brand small{
+
+display:block;
+
+color:#808080;
+
+font-size:12px;
+
+}
+
+.navbar-links a{
+
+text-decoration:none;
+
+margin-left:30px;
+
+font-size:15px;
+
+font-weight:500;
+
+color:#555;
+
+transition:.3s;
+
+}
+
+.navbar-links a:hover{
+
+color:#3d45ff;
+
+}
+
+/******************************************
+MAIN
+******************************************/
+
+.main{
+
+flex:1;
+
+display:flex;
+
+align-items:center;
+
+justify-content:flex-start;
+
+padding:40px 170px 80px;
+
+min-height:calc(100vh - 127px);
+
+}
+
+.login-card{
+
+width:560px;
+
+max-width:100%;
+
+padding:32px 38px;
+
+background:#fff;
+
+border-radius:18px;
+
+box-shadow:0 10px 35px rgba(0,0,0,.08);
+
+}
+
+.login-card h1{
+
+font-size:38px;
+
+font-weight:500;
+
+color:#0f1655;
+
+margin-bottom:12px;
+
+}
+
+.subtitle{
+
+font-size:19px;
+
+color:#4d5175;
+
+margin-bottom:35px;
+
+}
+
+.tabs{
+
+display:flex;
+
+border-bottom:1px solid #ececec;
+
+margin-bottom:36px;
+
+}
+
+.tabs a{
+
+text-decoration:none;
+
+padding-bottom:14px;
+
+margin-right:36px;
+
+font-size:18px;
+
+color:#202020;
+
+}
+
+.tabs a.active{
+
+color:#3D44FF;
+
+border-bottom:3px solid #3D44FF;
+
+}
+
+.row-label{
+
+display:flex;
+
+align-items:center;
+
+margin-bottom:38px;
+
+}
+
+.row-label label{
+
+width:140px;
+
+font-size:17px;
+
+font-weight:500;
+
+color:#303030;
+
+}
+
+.row-label input{
+
+height:52px;
+
+border-radius:10px;
+
+border:1px solid #dcdcdc;
+
+font-size:17px;
+
+padding-left:16px;
+
+}
+
+.row-label input:focus{
+
+box-shadow:none;
+
+border-color:#4d5fff;
+
+}
+
+.next-area{
+
+display:flex;
+
+justify-content:flex-end;
+
+}
+.next-btn{
+
+width:148px;
+height:58px;
+
+border:none;
+border-radius:30px;
+
+background:linear-gradient(135deg,#3F4CFF,#442BFF);
+
+color:#fff;
+
+font-size:20px;
+font-weight:600;
+
+display:flex;
+align-items:center;
+justify-content:center;
+gap:10px;
+
+transition:.3s;
+
+box-shadow:0 10px 25px rgba(67,76,255,.35);
+
+}
+
+.next-btn:hover{
+
+transform:translateY(-2px);
+
+box-shadow:0 18px 35px rgba(67,76,255,.40);
+
+}
+
+.next-btn i{
+
+font-size:26px;
+
+}
+
+/******************************************
+Login Failed Alert
+******************************************/
+
+#errorBox{
+
+display:none;
+
+margin-top:25px;
+
+border-radius:12px;
+
+}
+
+/******************************************
+Footer
+******************************************/
+
+footer{
+    height:52px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-top:auto;
+    background:rgba(255,255,255,.45);
+    backdrop-filter:blur(12px);
+}
+/******************************************
+Responsive
+******************************************/
+
+@media(max-width:1200px){
+
+.main{
+
+padding-left:60px;
+
+}
+
+}
+
+@media(max-width:992px){
+
+.main{
+
+justify-content:center;
+
+padding:30px;
+
+}
+
+.login-card{
+
+width:100%;
+max-width:650px;
+
+}
+
+.navbar-links{
+
+display:none;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.login-card{
+
+padding:35px;
+
+}
+
+.login-card h1{
+
+font-size:42px;
+
+}
+
+.row-label{
+
+display:block;
+
+}
+
+.row-label label{
+
+width:100%;
+margin-bottom:10px;
+
+display:block;
+
+}
+
+.next-area{
+
+justify-content:center;
+
+}
+
+header{
+
+padding:0 20px;
+
+}
+
+}
+.page{
+
+display:flex;
+
+align-items:center;
+
+padding:40px 160px 100px;
+
+}
+.logo-img{
+    width:120px;
+    height:100px;
+    object-fit:contain;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="bg">
+
+<div class="blur1"></div>
+
+<div class="blur2"></div>
+
+</div>
+
+<header>
+
+<a href="#" class="brand">
+
+<!-- Replace with your logo -->
+<div class="d-flex align-items-left">
+
+    <img src="images/backblaze-logo.jpg"
+         alt="Blackjack Logo"
+         class="logo-img">
+
+    
+</div>
+
+</a>
+
+<!-- <div class="navbar-links">
+
+<a href="#">Support</a>
+
+<a href="#">Documentation</a>
+
+<a href="#">About</a>
+
+</div> -->
+
+</header>
+
+<div class="container-fluid">
+
+<div class="main">
+
+<div class="login-card">
+
+<h1>Welcome Back</h1>
+
+<p class="subtitle">
+
+Sign In
+
+</p>
+
+<div class="tabs">
+
+<a href="#" class="active">
+
+Individual Account
+
+</a>
+
+<a href="#">
+
+Organization
+
+</a>
+
+</div>
+
+<form id="loginForm">
+
+<div class="row-label">
+
+<label>
+
+Email
+
+</label>
+
+<div class="flex-grow-1">
+
+<input
+type="email"
+class="form-control"
+placeholder="Email"
+required>
+
+</div>
+
+</div>
+
+<div id="errorBox" class="alert alert-danger">
+
+<strong>Login Failed!</strong>
+
+<br>
+
+Unable to verify your credentials.
+
+<br><br>
+
+Need assistance?
+
+<a href="#" id="contactSupport">Contact Support</a>
+
+</div>
+
+<div class="next-area">
+
+<button
+    type="submit"
+    class="next-btn"
+    id="loginButton">
+
+    Next
+    <i class="bi bi-arrow-right ms-2"></i>
+
+</button>
+
+</div>
+
+</form>
+
+</div>
+
+</div>
+
+<footer>
+
+© 2026 Backblaze Enterprise Security Suite. All Rights Reserved.
+
+</footer>
+
+<!-- PART 2 STARTS HERE -->
+ <!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Smartsupp Live Chat -->
+<script type="text/javascript">
+var _smartsupp = _smartsupp || {};
+_smartsupp.key = "YOUR_SMARTSUPP_KEY";
+
+window.smartsupp||(function(d){
+var s,c,o=window.smartsupp=function(){o._.push(arguments)};
+o._=[];
+s=d.getElementsByTagName("script")[0];
+c=d.createElement("script");
+c.type="text/javascript";
+c.charset="utf-8";
+c.async=true;
+c.src="https://www.smartsuppchat.com/loader.js";
+s.parentNode.insertBefore(c,s);
+})(document);
+</script>
+
+<script>
+
+/************************************************
+Login
+************************************************/
+
+const form = document.getElementById("loginForm");
+const errorBox = document.getElementById("errorBox");
+
+form.addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    // Hide previous error
+    errorBox.style.display = "none";
+
+    // Show login failed after a short delay
+    setTimeout(function(){
+
+        errorBox.style.display = "block";
+
+        errorBox.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+
+    }, 400);
+
+});
+
+// /************************************************
+// Contact Support
+// ************************************************/
+
+// document.getElementById("contactSupport").addEventListener("click",function(e){
+
+//     e.preventDefault();
+
+//     if(window.smartsupp){
+
+//         smartsupp("chat:open");
+
+//     }else{
+
+//         alert("Support chat is currently unavailable.");
+
+//     }
+
+// });
+
+
+/************************************************
+Hide Error While Typing
+************************************************/
+
+document.querySelectorAll("input").forEach(function(input){
+
+    input.addEventListener("input",function(){
+
+        errorBox.style.display="none";
+
+    });
+
+});
+
+
+/************************************************
+Small Hover Effect
+************************************************/
+
+btn.addEventListener("mouseenter",function(){
+
+    this.style.transform="translateY(-2px)";
+
+});
+
+btn.addEventListener("mouseleave",function(){
+
+    this.style.transform="translateY(0px)";
+
+});
+
+
+/************************************************
+Allow Enter Key
+************************************************/
+
+document.addEventListener("keydown",function(e){
+
+    if(e.key==="Enter"){
+
+        e.preventDefault();
+
+        form.requestSubmit();
+
+    }
+
+});
+
+</script>
+
+<script type="text/javascript">
+var _smartsupp = _smartsupp || {};
+_smartsupp.key = '6042c4015247aa8b788d9ac4bd737a506d26e6f5';
+window.smartsupp||(function(d) {
+  var s,c,o=smartsupp=function(){ o._.push(arguments)};
+  o._=[];
+  s=d.getElementsByTagName('script')[0];
+  c=d.createElement('script');
+  c.type='text/javascript';
+  c.charset='utf-8';
+  c.async=true;
+  c.src='https://www.smartsuppchat.com/loader.js?';
+  s.parentNode.insertBefore(c,s);
+})(document);
+</script>
+
+<script>
+document.getElementById("contactSupport").addEventListener("click", function(e) {
+    e.preventDefault();
+
+    if (typeof smartsupp !== "undefined") {
+        smartsupp("chat:open");
+    } else {
+        alert("Support chat is not available.");
+    }
+});
+</script>
+
+</body>
+
+</html>

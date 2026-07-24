@@ -460,49 +460,88 @@ footer{
 Responsive
 ******************************************/
 
-@media(max-width:1200px){
+/* ===========================
+   Mobile Phones
+=========================== */
+@media (max-width: 576px) {
 
-.main{
+    header{
+        height:70px;
+        padding:0 15px;
+    }
 
-padding-left:60px;
+    .brand h4{
+        font-size:24px;
+    }
+
+    .brand small{
+        font-size:11px;
+    }
+
+    .logo-img{
+        width:42px;
+        height:42px;
+    }
+
+    .nav-links{
+        display:none;
+    }
+
+    .main{
+        padding:20px 15px 40px;
+        justify-content:center;
+        align-items:flex-start;
+    }
+
+    .login-card{
+        width:100%;
+        max-width:100%;
+        padding:25px 20px;
+        border-radius:16px;
+    }
+
+    .login-card h1{
+        font-size:34px;
+    }
+
+    .tabs{
+        overflow-x:auto;
+        white-space:nowrap;
+    }
+
+    .form-row{
+        display:block;
+    }
+
+    .form-row label{
+        width:100%;
+        margin-bottom:8px;
+    }
+
+    .form-control{
+        width:100%;
+    }
+
+    .next-area{
+        display:flex;
+        justify-content:center;
+        margin-top:25px;
+    }
+
+    .next-btn{
+        width:130px;
+        height:42px;
+        font-size:16px;
+    }
+
+    footer{
+        text-align:center;
+        font-size:13px;
+        padding:12px;
+        height:auto;
+    }
 
 }
-
-}
-
-@media(max-width:992px){
-
-.main{
-
-justify-content:center;
-
-padding:30px;
-
-}
-
-.login-card{
-
-width:100%;
-max-width:650px;
-
-}
-
-.navbar-links{
-
-display:none;
-
-}
-
-}
-
-@media(max-width:768px){
-
-.login-card{
-
-padding:35px;
-
-}
-
 .login-card h1{
 
 font-size:42px;
